@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import zelimkhan.magomadov.utilitybillestimator.ui.theme.UtilityBillEstimatorTheme
@@ -20,13 +21,14 @@ import zelimkhan.magomadov.utilitybillestimator.ui.theme.UtilityBillEstimatorThe
 fun UtilityService(
     name: String,
     @DrawableRes icon: Int,
+    modifier: Modifier = Modifier,
     previousValue: String = "",
     previousValueChange: (String) -> Unit,
     currentValue: String = "",
     currentValueChange: (String) -> Unit,
     tariff: String = "",
     tariffChange: (String) -> Unit,
-    modifier: Modifier = Modifier
+    isLastService: Boolean = false
 ) {
     Column(
         modifier = modifier,
@@ -37,18 +39,23 @@ fun UtilityService(
         CircleImage(icon = icon, size = 100.dp)
         Spacer(modifier = Modifier.height(32.dp))
         UtilityServiceTextField(
-            "Предыдущие показания",
+            placeholder = "Предыдущие показания",
             value = previousValue,
             onValueChange = previousValueChange
         )
         Spacer(modifier = Modifier.height(16.dp))
         UtilityServiceTextField(
-            "Текущие показания",
+            placeholder = "Текущие показания",
             value = currentValue,
-            currentValueChange
+            onValueChange = currentValueChange
         )
         Spacer(modifier = Modifier.height(16.dp))
-        UtilityServiceTextField("Тариф", value = tariff, tariffChange)
+        UtilityServiceTextField(
+            placeholder = "Тариф",
+            value = tariff,
+            onValueChange = tariffChange,
+            imeAction = if (isLastService) ImeAction.Done else ImeAction.Next
+        )
     }
 }
 

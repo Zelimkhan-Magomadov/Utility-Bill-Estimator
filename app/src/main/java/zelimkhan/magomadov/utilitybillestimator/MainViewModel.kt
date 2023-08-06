@@ -15,15 +15,33 @@ class MainViewModel : ViewModel() {
 
     fun onIntent(intent: MainIntent) {
         when (intent) {
-            is MainIntent.PreviousLightCounterChange -> TODO()
-            is MainIntent.CurrentLightCounterChange -> TODO()
-            is MainIntent.LightTariffChange -> TODO()
-            is MainIntent.CurrentGasCounterChange -> TODO()
-            is MainIntent.CurrentWaterCounterChange -> TODO()
-            is MainIntent.GasTariffChange -> TODO()
-            is MainIntent.PreviousGasCounterChange -> TODO()
-            is MainIntent.PreviousWaterCounterChange -> TODO()
-            is MainIntent.WaterTariffChange -> TODO()
+            is MainIntent.PreviousLightCounterChange ->
+                _mainState.update { it.copy(previousLightCounter = intent.value) }
+
+            is MainIntent.CurrentLightCounterChange ->
+                _mainState.update { it.copy(currentLightCounter = intent.value) }
+
+            is MainIntent.LightTariffChange ->
+                _mainState.update { it.copy(lightTariff = intent.value) }
+
+            is MainIntent.PreviousGasCounterChange ->
+                _mainState.update { it.copy(previousGasCounter = intent.value) }
+
+            is MainIntent.CurrentGasCounterChange ->
+                _mainState.update { it.copy(currentGasCounter = intent.value) }
+
+            is MainIntent.GasTariffChange ->
+                _mainState.update { it.copy(gasTariff = intent.value) }
+
+            is MainIntent.PreviousWaterCounterChange ->
+                _mainState.update { it.copy(previousWaterCounter = intent.value) }
+
+            is MainIntent.CurrentWaterCounterChange ->
+                _mainState.update { it.copy(currentWaterCounter = intent.value) }
+
+            is MainIntent.WaterTariffChange ->
+                _mainState.update { it.copy(waterTariff = intent.value) }
+
             MainIntent.Calculate -> calculatePayments()
         }
     }

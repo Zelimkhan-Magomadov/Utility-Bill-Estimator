@@ -67,6 +67,7 @@ fun MainScreen(
             currentValueChange = { onIntent(MainIntent.CurrentWaterCounterChange(it)) },
             tariff = mainState.waterTariff,
             tariffChange = { onIntent(MainIntent.WaterTariffChange(it)) },
+            isLastService = true
         )
 
         Spacer(modifier = Modifier.height(64.dp))
@@ -95,7 +96,6 @@ private fun GreetingPreview() {
                 mainState = MainState(),
                 onIntent = {},
                 paymentState = PaymentState(),
-                //onEvent = {}
             )
         }
     }
