@@ -39,19 +39,19 @@ fun UtilityService(
         CircleImage(icon = icon, size = 100.dp)
         Spacer(modifier = Modifier.height(32.dp))
         UtilityServiceTextField(
-            placeholder = "Предыдущие показания",
+            hint = "Предыдущие показания",
             value = previousValue,
             onValueChange = previousValueChange
         )
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(8.dp))
         UtilityServiceTextField(
-            placeholder = "Текущие показания",
+            hint = "Текущие показания",
             value = currentValue,
             onValueChange = currentValueChange
         )
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(8.dp))
         UtilityServiceTextField(
-            placeholder = "Тариф",
+            hint = "Тариф",
             value = tariff,
             onValueChange = tariffChange,
             imeAction = if (isLastService) ImeAction.Done else ImeAction.Next

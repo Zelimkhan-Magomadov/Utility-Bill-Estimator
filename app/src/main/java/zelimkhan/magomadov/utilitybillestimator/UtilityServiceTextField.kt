@@ -24,7 +24,7 @@ import zelimkhan.magomadov.utilitybillestimator.ui.theme.UtilityBillEstimatorThe
 
 @Composable
 fun UtilityServiceTextField(
-    placeholder: String,
+    hint: String,
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
@@ -34,7 +34,7 @@ fun UtilityServiceTextField(
         value = value,
         onValueChange = { onValueChange(it) },
         shape = RoundedCornerShape(8.dp),
-        placeholder = { Text(text = placeholder) },
+        label = { Text(text = hint) },
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Decimal,
             imeAction = imeAction
@@ -55,7 +55,7 @@ private fun Preview() {
             var value by remember { mutableStateOf("") }
             val onValueChange: (String) -> Unit = { s -> value = s }
             UtilityServiceTextField(
-                placeholder = "Показания",
+                hint = "Показания",
                 value = value,
                 onValueChange = onValueChange,
                 modifier = Modifier.padding(32.dp)

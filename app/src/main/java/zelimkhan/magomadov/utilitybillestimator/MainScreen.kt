@@ -8,12 +8,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import zelimkhan.magomadov.utilitybillestimator.ui.theme.UtilityBillEstimatorTheme
@@ -47,7 +49,7 @@ fun MainScreen(
 
         UtilityService(
             name = "Газ",
-            icon = R.drawable.light,
+            icon = R.drawable.gas,
             previousValue = mainState.previousGasCounter,
             previousValueChange = { onIntent(MainIntent.PreviousGasCounterChange(it)) },
             currentValue = mainState.currentGasCounter,
@@ -60,7 +62,7 @@ fun MainScreen(
 
         UtilityService(
             name = "Вода",
-            icon = R.drawable.light,
+            icon = R.drawable.water,
             previousValue = mainState.previousWaterCounter,
             previousValueChange = { onIntent(MainIntent.PreviousWaterCounterChange(it)) },
             currentValue = mainState.currentWaterCounter,
@@ -72,7 +74,10 @@ fun MainScreen(
 
         Spacer(modifier = Modifier.height(64.dp))
 
-        Button(onClick = { onIntent(MainIntent.Calculate) }) {
+        Button(
+            onClick = { onIntent(MainIntent.Calculate) },
+            colors = ButtonDefaults.buttonColors(containerColor = Color.Black)
+        ) {
             Text(text = "Вычислить")
         }
 
