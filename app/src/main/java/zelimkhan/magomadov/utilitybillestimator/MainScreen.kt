@@ -21,35 +21,65 @@ import zelimkhan.magomadov.utilitybillestimator.ui.theme.UtilityBillEstimatorThe
 
 @Composable
 fun MainScreen(
-    //mainState: MainState,
-    //paymentState: PaymentState,
-    //onEvent: (MainEvent) -> Unit
+    mainState: MainState,
+    paymentState: PaymentState,
+    onIntent: (MainIntent) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
+        modifier = modifier
             .verticalScroll(rememberScrollState())
             .padding(32.dp)
     ) {
-        UtilityService(title = "Свет", icon = R.drawable.light)
-        Spacer(modifier = Modifier.height(32.dp))
-        UtilityService(title = "Газ", icon = R.drawable.light)
-        Spacer(modifier = Modifier.height(32.dp))
-        UtilityService(title = "Вода", icon = R.drawable.light)
-        Spacer(modifier = Modifier.height(64.dp))
-        CalculateButton(onCalculate = { })
-        Spacer(modifier = Modifier.height(32.dp))
-        PaymentResult(PaymentState())
-        Spacer(modifier = Modifier.height(16.dp))
-    }
-}
+        UtilityService(
+            name = "Свет",
+            icon = R.drawable.light,
+            previousValue = mainState.previousLightCounter,
+            previousValueChange = { onIntent(MainIntent.PreviousLightCounterChange(it)) },
+            currentValue = mainState.currentLightCounter,
+            currentValueChange = { onIntent(MainIntent.CurrentLightCounterChange(it)) },
+            tariff = mainState.lightTariff,
+            tariffChange = { onIntent(MainIntent.LightTariffChange(it)) },
+        )
 
-@Composable
-private fun CalculateButton(
-    onCalculate: () -> Unit
-) {
-    Button(onClick = onCalculate) {
-        Text(text = "Вычислить")
+        Spacer(modifier = Modifier.height(32.dp))
+
+        UtilityService(
+            name = "Газ",
+            icon = R.drawable.light,
+            previousValue = mainState.previousGasCounter,
+            previousValueChange = { onIntent(MainIntent.PreviousGasCounterChange(it)) },
+            currentValue = mainState.currentGasCounter,
+            currentValueChange = { onIntent(MainIntent.CurrentGasCounterChange(it)) },
+            tariff = mainState.gasTariff,
+            tariffChange = { onIntent(MainIntent.GasTariffChange(it)) },
+        )
+
+        Spacer(modifier = Modifier.height(32.dp))
+
+        UtilityService(
+            name = "Вода",
+            icon = R.drawable.light,
+            previousValue = mainState.previousWaterCounter,
+            previousValueChange = { onIntent(MainIntent.PreviousWaterCounterChange(it)) },
+            currentValue = mainState.currentWaterCounter,
+            currentValueChange = { onIntent(MainIntent.CurrentWaterCounterChange(it)) },
+            tariff = mainState.waterTariff,
+            tariffChange = { onIntent(MainIntent.WaterTariffChange(it)) },
+        )
+
+        Spacer(modifier = Modifier.height(64.dp))
+
+        Button(onClick = { onIntent(MainIntent.Calculate) }) {
+            Text(text = "Вычислить")
+        }
+
+        Spacer(modifier = Modifier.height(32.dp))
+
+        PaymentResult(paymentState = paymentState)
+
+        Spacer(modifier = Modifier.height(16.dp))
     }
 }
 
@@ -62,8 +92,9 @@ private fun GreetingPreview() {
             color = MaterialTheme.colorScheme.background
         ) {
             MainScreen(
-                //mainState = MainState(),
-                //paymentState = PaymentState(),
+                mainState = MainState(),
+                onIntent = {},
+                paymentState = PaymentState(),
                 //onEvent = {}
             )
         }
