@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import java.math.BigDecimal
+import java.text.NumberFormat
 
 class MainViewModel : ViewModel() {
     private val _mainState = MutableStateFlow(MainState())
@@ -71,10 +71,10 @@ class MainViewModel : ViewModel() {
 
         _paymentState.update {
             PaymentState(
-                lightPayment = lightPayment,
-                gasPayment = gasPayment,
-                waterPayment = waterPayment,
-                totalPayment = totalPayment
+                lightPayment = formatNumber(lightPayment),
+                gasPayment = formatNumber(gasPayment),
+                waterPayment = formatNumber(waterPayment),
+                totalPayment = formatNumber(totalPayment)
             )
         }
     }
@@ -84,9 +84,13 @@ class MainViewModel : ViewModel() {
         currentCounter: String,
         tariff: String,
     ): String {
-        val previousValue = BigDecimal(previousCounter)
-        val currentValue = BigDecimal(currentCounter)
-        val tariffValue = BigDecimal(tariff)
+        // Todo: Replace with normal error handling
+        if (previousCounter.isEmpty() || currentCounter.isEmpty() || tariff.isEmpty())
+            return "0"
+
+        val previousValue = previousCounter.toBigDecimal()
+        val currentValue = currentCounter.toBigDecimal()
+        val tariffValue = tariff.toBigDecimal()
 
         val consumption = currentValue.subtract(previousValue)
         val payment = consumption.multiply(tariffValue)
@@ -104,5 +108,10 @@ class MainViewModel : ViewModel() {
         val waterBigDecimal = water.toBigDecimal()
 
         return (lightBigDecimal + gasBigDecimal + waterBigDecimal).toString()
+    }
+
+    private fun formatNumber(number: String): String {
+        val numberFormat = NumberFormat.getInstance()
+        return numberFormat.format(number.toBigDecimal())
     }
 }
