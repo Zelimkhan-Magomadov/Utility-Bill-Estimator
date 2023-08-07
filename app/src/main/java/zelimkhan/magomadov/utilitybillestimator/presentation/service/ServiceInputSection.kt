@@ -1,4 +1,4 @@
-package zelimkhan.magomadov.utilitybillestimator
+package zelimkhan.magomadov.utilitybillestimator.presentation.service
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.Column
@@ -15,10 +15,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import zelimkhan.magomadov.utilitybillestimator.ui.theme.UtilityBillEstimatorTheme
+import zelimkhan.magomadov.utilitybillestimator.R
+import zelimkhan.magomadov.utilitybillestimator.presentation.component.CircleImage
+import zelimkhan.magomadov.utilitybillestimator.presentation.ui.theme.UtilityBillEstimatorTheme
 
 @Composable
-fun UtilityService(
+fun ServiceInputSection(
     name: String,
     @DrawableRes icon: Int,
     modifier: Modifier = Modifier,
@@ -38,19 +40,19 @@ fun UtilityService(
         Spacer(modifier = Modifier.height(8.dp))
         CircleImage(icon = icon, size = 100.dp)
         Spacer(modifier = Modifier.height(32.dp))
-        UtilityServiceTextField(
+        ServiceTextField(
             hint = "Предыдущие показания",
             value = previousValue,
             onValueChange = previousValueChange
         )
         Spacer(modifier = Modifier.height(8.dp))
-        UtilityServiceTextField(
+        ServiceTextField(
             hint = "Текущие показания",
             value = currentValue,
             onValueChange = currentValueChange
         )
         Spacer(modifier = Modifier.height(8.dp))
-        UtilityServiceTextField(
+        ServiceTextField(
             hint = "Тариф",
             value = tariff,
             onValueChange = tariffChange,
@@ -67,9 +69,9 @@ private fun Preview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            UtilityService(
+            ServiceInputSection(
                 name = "Свет",
-                icon = R.drawable.light,
+                icon = R.drawable.ic_light,
                 modifier = Modifier.padding(32.dp),
                 previousValue = "",
                 previousValueChange = {},

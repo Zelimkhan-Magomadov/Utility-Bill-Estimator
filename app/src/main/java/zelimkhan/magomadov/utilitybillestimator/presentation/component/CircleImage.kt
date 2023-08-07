@@ -1,4 +1,4 @@
-package zelimkhan.magomadov.utilitybillestimator
+package zelimkhan.magomadov.utilitybillestimator.presentation.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -16,7 +16,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import zelimkhan.magomadov.utilitybillestimator.ui.theme.UtilityBillEstimatorTheme
+import zelimkhan.magomadov.utilitybillestimator.R
+import zelimkhan.magomadov.utilitybillestimator.presentation.ui.theme.UtilityBillEstimatorTheme
 
 @Composable
 fun CircleImage(
@@ -43,7 +44,7 @@ private fun Preview() {
         ) {
             Box(contentAlignment = Alignment.TopCenter) {
                 CircleImage(
-                    icon = R.drawable.light,
+                    icon = R.drawable.ic_light,
                     size = 100.dp,
                     modifier = Modifier.padding(16.dp)
                 )

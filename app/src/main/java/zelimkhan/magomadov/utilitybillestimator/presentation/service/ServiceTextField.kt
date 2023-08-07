@@ -1,4 +1,4 @@
-package zelimkhan.magomadov.utilitybillestimator
+package zelimkhan.magomadov.utilitybillestimator.presentation.service
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -20,10 +20,10 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import zelimkhan.magomadov.utilitybillestimator.ui.theme.UtilityBillEstimatorTheme
+import zelimkhan.magomadov.utilitybillestimator.presentation.ui.theme.UtilityBillEstimatorTheme
 
 @Composable
-fun UtilityServiceTextField(
+fun ServiceTextField(
     hint: String,
     value: String,
     onValueChange: (String) -> Unit,
@@ -54,7 +54,7 @@ private fun Preview() {
         ) {
             var value by remember { mutableStateOf("") }
             val onValueChange: (String) -> Unit = { s -> value = s }
-            UtilityServiceTextField(
+            ServiceTextField(
                 hint = "Показания",
                 value = value,
                 onValueChange = onValueChange,

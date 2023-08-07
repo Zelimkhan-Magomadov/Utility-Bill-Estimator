@@ -1,6 +1,6 @@
-package zelimkhan.magomadov.utilitybillestimator
+package zelimkhan.magomadov.utilitybillestimator.presentation.service
 
-data class MainState(
+data class ServiceState(
     val previousLightCounter: String = "",
     val currentLightCounter: String = "",
     val previousGasCounter: String = "",
@@ -10,11 +10,4 @@ data class MainState(
     val lightTariff: String = "",
     val gasTariff: String = "",
     val waterTariff: String = "",
-)
-
-data class PaymentState(
-    val lightPayment: String = "0",
-    val gasPayment: String = "0",
-    val waterPayment: String = "0",
-    val totalPayment: String = "0",
 )

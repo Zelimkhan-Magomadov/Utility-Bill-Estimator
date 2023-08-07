@@ -1,4 +1,4 @@
-package zelimkhan.magomadov.utilitybillestimator
+package zelimkhan.magomadov.utilitybillestimator.presentation.service
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,8 +19,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun PaymentResult(
-    paymentState: PaymentState,
+fun BillPaymentResult(
+    paymentState: BillPaymentState,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -39,20 +39,20 @@ fun PaymentResult(
             Column(
                 Modifier.padding(16.dp)
             ) {
-                Payment(serviceName = "Свет:", payment = paymentState.lightPayment)
+                PaymentRow(serviceName = "Свет:", payment = paymentState.lightPayment)
                 Spacer(modifier = Modifier.height(2.dp))
-                Payment(serviceName = "Газ:", paymentState.gasPayment)
+                PaymentRow(serviceName = "Газ:", paymentState.gasPayment)
                 Spacer(modifier = Modifier.height(2.dp))
-                Payment(serviceName = "Вода:", paymentState.waterPayment)
+                PaymentRow(serviceName = "Вода:", paymentState.waterPayment)
                 Spacer(modifier = Modifier.height(16.dp))
-                Payment(serviceName = "Всего к оплате:", paymentState.totalPayment)
+                PaymentRow(serviceName = "Всего к оплате:", paymentState.totalPayment)
             }
         }
     }
 }
 
 @Composable
-private fun Payment(
+private fun PaymentRow(
     serviceName: String,
     payment: String
 ) {

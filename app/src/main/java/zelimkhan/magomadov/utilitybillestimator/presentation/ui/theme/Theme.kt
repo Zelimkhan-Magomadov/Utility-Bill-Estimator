@@ -1,4 +1,4 @@
-package zelimkhan.magomadov.utilitybillestimator.ui.theme
+package zelimkhan.magomadov.utilitybillestimator.presentation.ui.theme
 
 import android.app.Activity
 import androidx.compose.material3.MaterialTheme

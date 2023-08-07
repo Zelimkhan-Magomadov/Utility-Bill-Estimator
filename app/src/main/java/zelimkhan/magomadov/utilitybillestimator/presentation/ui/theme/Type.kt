@@ -1,4 +1,4 @@
-package zelimkhan.magomadov.utilitybillestimator.ui.theme
+package zelimkhan.magomadov.utilitybillestimator.presentation.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
